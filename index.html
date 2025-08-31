@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Ads Mobilization Plan - MyBestPicks.ca</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Slate Gray & Amber -->
+    <!-- Application Structure Plan: A tabbed, single-page dashboard structure was chosen to guide the user through a logical, step-by-step process for launching a Google Ads campaign. This is more intuitive than a long, scrolling document. The flow moves from foundational setup to advanced optimization, mirroring a real-world workflow. Key interactions include switching between tabs to reveal detailed steps and viewing interactive charts that visualize strategic concepts like budget allocation and performance scaling. This structure makes a complex process digestible and actionable. -->
+    <!-- Visualization & Content Choices: 
+        - Report Info: Campaign Phased Rollout -> Goal: Inform -> Viz/Presentation: Tabbed Interface -> Interaction: Click tabs to see phase details -> Justification: Breaks down a large strategy into manageable, sequential steps, preventing overwhelm. Method: HTML/JS.
+        - Report Info: Recommended Campaign Mix -> Goal: Compare -> Viz/Presentation: Donut Chart -> Interaction: Hover for details -> Justification: Provides a quick, visual summary of where initial efforts should be focused (PMax heavy). Library: Chart.js.
+        - Report Info: Bidding Strategy Evolution -> Goal: Show Change -> Viz/Presentation: Line Chart -> Interaction: Hover to see ROAS/Budget progression -> Justification: Clearly illustrates the strategic shift from data gathering (Max Conversions) to profitability (Target ROAS) over time. Library: Chart.js.
+        - Report Info: Step-by-step Instructions -> Goal: Organize -> Viz/Presentation: Numbered lists with icons -> Interaction: Read and follow -> Justification: Presents actionable tasks in a clear, easy-to-follow format. Method: HTML/Tailwind CSS.
+    -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        .tab-active {
+            border-bottom-color: #f59e0b; /* amber-500 */
+            color: #0f172a; /* slate-900 */
+            font-weight: 600;
+        }
+        .tab-inactive {
+            border-bottom-color: transparent;
+            color: #64748b; /* slate-500 */
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 350px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body class="text-slate-800">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-7xl">
+        <header class="text-center mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-slate-900">Google Ads Mobilization Plan</h1>
+            <p class="text-lg text-slate-600 mt-2">A Strategic Guide for <a href="https://mybestpicks.ca" target="_blank" class="text-amber-600 hover:underline">MyBestPicks.ca</a></p>
+        </header>
+
+        <main>
+            <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                <!-- Tabs Navigation -->
+                <div class="border-b border-slate-200 mb-6">
+                    <nav class="-mb-px flex space-x-6" id="tabs">
+                        <button data-tab="phase1" class="tab-btn whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm md:text-base tab-active">
+                            Phase 1: Foundation
+                        </button>
+                        <button data-tab="phase2" class="tab-btn whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm md:text-base tab-inactive">
+                            Phase 2: Strategy
+                        </button>
+                        <button data-tab="phase3" class="tab-btn whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm md:text-base tab-inactive">
+                            Phase 3: Bidding & Budget
+                        </button>
+                        <button data-tab="phase4" class="tab-btn whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm md:text-base tab-inactive">
+                            Phase 4: Optimization
+                        </button>
+                    </nav>
+                </div>
+
+                <!-- Tab Content -->
+                <div id="tab-content">
+                    <!-- Phase 1: Foundational Setup -->
+                    <div id="phase1" class="tab-pane active">
+                        <h2 class="text-2xl font-semibold text-slate-900 mb-4">Phase 1: Foundational Setup (Pre-Launch)</h2>
+                        <p class="text-slate-600 mb-6">This is the most critical phase. Proper setup ensures we can accurately track performance, optimize for sales, and legally run product ads. Do not skip any of these steps.</p>
+                        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-lg text-slate-800 mb-2 flex items-center">
+                                    <span class="bg-amber-100 text-amber-700 rounded-full h-8 w-8 text-sm font-bold flex items-center justify-center mr-3">1</span> Account Integration
+                                </h3>
+                                <ul class="list-disc list-inside text-slate-600 space-y-2">
+                                    <li>Create & verify <strong class="text-slate-700">Google Merchant Center</strong>.</li>
+                                    <li>Link Merchant Center to Google Ads.</li>
+                                    <li>Link <strong class="text-slate-700">Google Analytics 4 (GA4)</strong> to Google Ads.</li>
+                                    <li>Ensure billing information is correct in Google Ads.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-lg text-slate-800 mb-2 flex items-center">
+                                    <span class="bg-amber-100 text-amber-700 rounded-full h-8 w-8 text-sm font-bold flex items-center justify-center mr-3">2</span> Product Feed Optimization
+                                </h3>
+                                <p class="text-slate-600">Your product feed is your lifeline for Shopping ads. Upload it to Merchant Center with:</p>
+                                <ul class="list-disc list-inside text-slate-600 space-y-2 mt-2">
+                                    <li>High-quality, clean images.</li>
+                                    <li>SEO-rich titles and descriptions.</li>
+                                    <li>Accurate pricing (in CAD) and availability.</li>
+                                    <li>GTINs/MPNs where possible to improve matching.</li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200 md:col-span-2 lg:col-span-1">
+                                <h3 class="font-bold text-lg text-slate-800 mb-2 flex items-center">
+                                    <span class="bg-amber-100 text-amber-700 rounded-full h-8 w-8 text-sm font-bold flex items-center justify-center mr-3">3</span> Conversion Tracking
+                                </h3>
+                                <p class="text-slate-600">Set up conversion tracking via GA4 or the Google Ads tag. Without this, we are flying blind. Track:</p>
+                                <ul class="list-disc list-inside text-slate-600 space-y-2 mt-2">
+                                    <li><strong class="text-slate-700">Purchase:</strong> Primary goal, track transaction value.</li>
+                                    <li><strong class="text-slate-700">Add to Cart:</strong> Key micro-conversion.</li>
+                                    <li><strong class="text-slate-700">Begin Checkout:</strong> High-intent signal.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 2: Campaign Structure & Strategy -->
+                    <div id="phase2" class="tab-pane hidden">
+                        <h2 class="text-2xl font-semibold text-slate-900 mb-4">Phase 2: Campaign Structure & Strategy</h2>
+                        <p class="text-slate-600 mb-6">We will use a modern, multi-pronged approach focused on Google's AI to find converting customers efficiently. This structure maximizes reach while maintaining control.</p>
+                        <div class="grid lg:grid-cols-5 gap-8">
+                           <div class="lg:col-span-3">
+                                <div class="space-y-6">
+                                    <div>
+                                        <h3 class="font-bold text-xl text-slate-800 mb-2">Primary Campaign: Performance Max (PMax)</h3>
+                                        <p class="text-slate-600">This will be our main engine for sales. PMax uses AI to run ads across all of Google's networks (Shopping, Search, YouTube, etc.). It's ideal for e-commerce.</p>
+                                        <ul class="list-disc list-inside text-slate-600 space-y-2 mt-3 pl-2">
+                                            <li><strong>Goal:</strong> Sales.</li>
+                                            <li><strong>Asset Groups:</strong> Create groups based on your product categories (e.g., 'Home Gadgets', 'Outdoor Gear'). Provide high-quality images, logos, and ad copy.</li>
+                                            <li><strong>Audience Signals:</strong> This is crucial. Guide the AI by providing signals like website visitors (remarketing), and in-market audiences for your product types.</li>
+                                        </ul>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-xl text-slate-800 mb-2">Supporting Campaign: Dynamic Search Ads (DSA)</h3>
+                                        <p class="text-slate-600">DSA helps capture long-tail keyword searches you might miss. Google dynamically creates ads based on your website's content.</p>
+                                        <ul class="list-disc list-inside text-slate-600 space-y-2 mt-3 pl-2">
+                                            <li><strong>Goal:</strong> Capture broad, relevant search traffic.</li>
+                                            <li><strong>Targeting:</strong> Target your product category pages.</li>
+                                            <li><strong>Negative Keywords:</strong> Actively add negative keywords (e.g., 'free', 'jobs', 'reviews') to avoid wasted spend.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                           </div>
+                           <div class="lg:col-span-2">
+                                <h3 class="font-bold text-xl text-slate-800 text-center mb-2">Initial Campaign Focus</h3>
+                                <p class="text-slate-600 text-center mb-4">Our initial budget and effort will be heavily weighted towards Performance Max, as it's the most effective tool for driving sales in e-commerce today.</p>
+                                <div class="chart-container">
+                                    <canvas id="campaignChart"></canvas>
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 3: Bidding & Budget -->
+                    <div id="phase3" class="tab-pane hidden">
+                         <h2 class="text-2xl font-semibold text-slate-900 mb-4">Phase 3: Bidding & Budget Strategy</h2>
+                        <p class="text-slate-600 mb-6">Our approach is to start conservatively, gather data, and then scale intelligently based on performance. This minimizes initial risk and builds a foundation for profitable growth.</p>
+                        <div class="grid lg:grid-cols-5 gap-8 items-center">
+                            <div class="lg:col-span-3">
+                                <div class="space-y-6">
+                                    <div>
+                                        <h3 class="font-bold text-lg text-slate-800 mb-2">Initial Budget</h3>
+                                        <p class="text-slate-600">Start with a modest daily budget of <strong class="text-slate-900">$20 - $30 CAD</strong>. This is enough to gather initial data without significant risk. We can scale this up once we see positive returns.</p>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-lg text-slate-800 mb-2">Bidding Strategy: A Two-Step Process</h3>
+                                        <ol class="list-decimal list-inside text-slate-600 space-y-3 pl-2">
+                                            <li>
+                                                <strong class="text-slate-700">Learning Phase (First 2-4 weeks):</strong> Use the <strong class="text-amber-600">"Maximize Conversions"</strong> bid strategy. The goal here is purely data collection. We want Google's AI to learn who your customers are by getting as many sales as possible, even if the initial return isn't high.
+                                            </li>
+                                            <li>
+                                                <strong class="text-slate-700">Profitability Phase (After 20+ conversions):</strong> Switch to <strong class="text-amber-600">"Target ROAS" (Return On Ad Spend)</strong>. Now that we have data, we can tell Google our profitability target (e.g., "For every $1 I spend, I want $3 back"). The AI will then optimize bids to hit this goal.
+                                            </li>
+                                        </ol>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-lg text-slate-800 mb-2">Targeting</h3>
+                                        <p class="text-slate-600">Target all of <strong class="text-slate-900">Canada</strong>. Initially, we won't segment further. Once we have data, we can analyze performance by province and apply bid adjustments if certain areas perform significantly better.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="lg:col-span-2">
+                                <h3 class="font-bold text-xl text-slate-800 text-center mb-2">Bidding & Budget Scaling</h3>
+                                <p class="text-slate-600 text-center mb-4">The strategy evolves from data gathering to profit-driven scaling over the first 60 days.</p>
+                                <div class="chart-container">
+                                    <canvas id="biddingChart"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Phase 4: Optimization & Scaling -->
+                    <div id="phase4" class="tab-pane hidden">
+                        <h2 class="text-2xl font-semibold text-slate-900 mb-4">Phase 4: Ongoing Optimization & Scaling</h2>
+                        <p class="text-slate-600 mb-6">Google Ads is not "set it and forget it." Consistent optimization is key to long-term profitability. Here is your weekly and monthly checklist.</p>
+                        <div class="grid md:grid-cols-2 gap-6">
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-lg text-slate-800 mb-3">Weekly Checklist</h3>
+                                <ul class="space-y-4">
+                                    <li class="flex items-start">
+                                        <span class="text-amber-600 mr-3 mt-1">&#10004;</span>
+                                        <div>
+                                            <strong class="text-slate-700">Review Search Terms (for DSA):</strong> Check the search query report. Add any irrelevant terms (e.g., "how to fix", "jobs") as negative keywords to stop wasting money.
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-amber-600 mr-3 mt-1">&#10004;</span>
+                                        <div>
+                                            <strong class="text-slate-700">Check PMax Asset Performance:</strong> In your PMax asset group, see which images and headlines are performing best. Pause the "Low" performing assets and test new variations.
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-amber-600 mr-3 mt-1">&#10004;</span>
+                                        <div>
+                                            <strong class="text-slate-700">Monitor Budget Pacing:</strong> Ensure your daily budget is being spent fully. If not, your bids or targeting may be too restrictive.
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-50 p-5 rounded-lg border border-slate-200">
+                                <h3 class="font-bold text-lg text-slate-800 mb-3">Monthly Checklist & Scaling</h3>
+                                <ul class="space-y-4">
+                                     <li class="flex items-start">
+                                        <span class="text-amber-600 mr-3 mt-1">&#10004;</span>
+                                        <div>
+                                            <strong class="text-slate-700">Analyze Product Performance:</strong> In Merchant Center or the Ads UI, identify your best-selling products. Consider creating a separate "High Performers" campaign for them to allocate more budget and control.
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-amber-600 mr-3 mt-1">&#10004;</span>
+                                        <div>
+                                            <strong class="text-slate-700">Review Audience Insights:</strong> See which audience segments are converting best. Use this data to refine your audience signals in PMax.
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start">
+                                        <span class="text-amber-600 mr-3 mt-1">&#10004;</span>
+                                        <div>
+                                            <strong class="text-slate-700">Scaling Strategy:</strong> If your campaigns are profitable and hitting your Target ROAS goal, begin scaling. Increase the daily budget by <strong class="text-slate-900">15-20% every 3-4 days</strong>. Avoid large, sudden increases as this can reset the algorithm's learning phase.
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="text-center mt-8 text-slate-500 text-sm">
+            <p>This interactive plan provides a strategic framework. Success requires consistent monitoring and data-driven adjustments.</p>
+        </footer>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const tabPanes = document.querySelectorAll('.tab-pane');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', () => {
+                    const target = tab.getAttribute('data-tab');
+
+                    tabs.forEach(t => {
+                        t.classList.remove('tab-active');
+                        t.classList.add('tab-inactive');
+                    });
+                    tab.classList.remove('tab-inactive');
+                    tab.classList.add('tab-active');
+
+                    tabPanes.forEach(pane => {
+                        if (pane.id === target) {
+                            pane.classList.remove('hidden');
+                            pane.classList.add('active');
+                        } else {
+                            pane.classList.add('hidden');
+                            pane.classList.remove('active');
+                        }
+                    });
+
+                    // Re-initialize charts if they are in the active tab to ensure they render correctly
+                    if (target === 'phase2' && !window.campaignChartInstance) {
+                        renderCampaignChart();
+                    }
+                    if (target === 'phase3' && !window.biddingChartInstance) {
+                        renderBiddingChart();
+                    }
+                });
+            });
+            
+            Chart.defaults.font.family = 'Inter';
+            Chart.defaults.color = '#475569'; // slate-600
+
+            function renderCampaignChart() {
+                const ctx = document.getElementById('campaignChart').getContext('2d');
+                if (window.campaignChartInstance) {
+                    window.campaignChartInstance.destroy();
+                }
+                window.campaignChartInstance = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Performance Max', 'Dynamic Search Ads', 'Standard Shopping (Future)'],
+                        datasets: [{
+                            label: 'Campaign Focus',
+                            data: [80, 15, 5],
+                            backgroundColor: [
+                                'rgba(59, 130, 246, 0.7)', // blue-500
+                                'rgba(245, 158, 11, 0.7)', // amber-500
+                                'rgba(100, 116, 139, 0.7)'  // slate-500
+                            ],
+                            borderColor: '#fff',
+                            borderWidth: 2
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    label: function(context) {
+                                        let label = context.label || '';
+                                        if (label) {
+                                            label += ': ';
+                                        }
+                                        if (context.parsed !== null) {
+                                            label += context.parsed + '% of Effort';
+                                        }
+                                        return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+
+            function renderBiddingChart() {
+                const ctx = document.getElementById('biddingChart').getContext('2d');
+                if (window.biddingChartInstance) {
+                    window.biddingChartInstance.destroy();
+                }
+                window.biddingChartInstance = new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Week 1', 'Week 4', 'Week 8', 'Week 12'],
+                        datasets: [{
+                            label: 'Daily Budget (CAD)',
+                            data: [25, 25, 45, 70],
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                            fill: true,
+                            tension: 0.4,
+                            yAxisID: 'y'
+                        }, {
+                            label: 'Target ROAS (%)',
+                            data: [0, 0, 250, 350],
+                            borderColor: 'rgba(245, 158, 11, 1)',
+                            backgroundColor: 'rgba(245, 158, 11, 0.1)',
+                            fill: false,
+                            tension: 0.4,
+                            yAxisID: 'y1',
+                            pointStyle: 'rectRot',
+                            pointRadius: 5
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                type: 'linear',
+                                display: true,
+                                position: 'left',
+                                title: {
+                                    display: true,
+                                    text: 'Budget ($)'
+                                }
+                            },
+                            y1: {
+                                type: 'linear',
+                                display: true,
+                                position: 'right',
+                                title: {
+                                    display: true,
+                                    text: 'ROAS (%)'
+                                },
+                                grid: {
+                                    drawOnChartArea: false,
+                                },
+                            }
+                        },
+                        plugins: {
+                            tooltip: {
+                                mode: 'index',
+                                intersect: false
+                            },
+                            legend: {
+                                position: 'bottom'
+                            }
+                        }
+                    }
+                });
+            }
+            
+            // Initial render for the first visible chart if needed
+            // None needed since Phase 1 is active by default and has no charts.
+        });
+    </script>
+</body>
+</html>
